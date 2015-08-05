@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.git.iboke.mapper.LeavemsgMapper" >
+  <resultMap id="BaseResultMap" type="com.git.iboke.model.Leavemsg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="com_name" property="comName" jdbcType="VARCHAR" />
+    <result column="com_content" property="comContent" jdbcType="VARCHAR" />
+    <result column="com_time" property="comTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, com_name, com_content, com_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from leavemsg
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from leavemsg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.git.iboke.model.Leavemsg" >
+    insert into leavemsg (id, com_name, com_content, 
+      com_time)
+    values (#{id,jdbcType=INTEGER}, #{comName,jdbcType=VARCHAR}, #{comContent,jdbcType=VARCHAR}, 
+      #{comTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.git.iboke.model.Leavemsg" >
+    insert into leavemsg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="comName != null" >
+        com_name,
+      </if>
+      <if test="comContent != null" >
+        com_content,
+      </if>
+      <if test="comTime != null" >
+        com_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="comName != null" >
+        #{comName,jdbcType=VARCHAR},
+      </if>
+      <if test="comContent != null" >
+        #{comContent,jdbcType=VARCHAR},
+      </if>
+      <if test="comTime != null" >
+        #{comTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.git.iboke.model.Leavemsg" >
+    update leavemsg
+    <set >
+      <if test="comName != null" >
+        com_name = #{comName,jdbcType=VARCHAR},
+      </if>
+      <if test="comContent != null" >
+        com_content = #{comContent,jdbcType=VARCHAR},
+      </if>
+      <if test="comTime != null" >
+        com_time = #{comTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.git.iboke.model.Leavemsg" >
+    update leavemsg
+    set com_name = #{comName,jdbcType=VARCHAR},
+      com_content = #{comContent,jdbcType=VARCHAR},
+      com_time = #{comTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

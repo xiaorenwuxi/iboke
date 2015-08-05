@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.git.iboke.mapper.ImgMapper" >
+  <resultMap id="BaseResultMap" type="com.git.iboke.model.Img" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="imgname" property="imgname" jdbcType="VARCHAR" />
+    <result column="imgurl" property="imgurl" jdbcType="VARCHAR" />
+    <result column="imgdesc" property="imgdesc" jdbcType="VARCHAR" />
+    <result column="imginfo" property="imginfo" jdbcType="VARCHAR" />
+    <result column="imgtype" property="imgtype" jdbcType="BIT" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, t_id, imgname, imgurl, imgdesc, imginfo, imgtype, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.git.iboke.model.Img" >
+    insert into img (id, t_id, imgname, 
+      imgurl, imgdesc, imginfo, 
+      imgtype, time)
+    values (#{id,jdbcType=INTEGER}, #{tId,jdbcType=INTEGER}, #{imgname,jdbcType=VARCHAR}, 
+      #{imgurl,jdbcType=VARCHAR}, #{imgdesc,jdbcType=VARCHAR}, #{imginfo,jdbcType=VARCHAR}, 
+      #{imgtype,jdbcType=BIT}, #{time,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.git.iboke.model.Img" >
+    insert into img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="imgname != null" >
+        imgname,
+      </if>
+      <if test="imgurl != null" >
+        imgurl,
+      </if>
+      <if test="imgdesc != null" >
+        imgdesc,
+      </if>
+      <if test="imginfo != null" >
+        imginfo,
+      </if>
+      <if test="imgtype != null" >
+        imgtype,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="imgname != null" >
+        #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgdesc != null" >
+        #{imgdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imginfo != null" >
+        #{imginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        #{imgtype,jdbcType=BIT},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.git.iboke.model.Img" >
+    update img
+    <set >
+      <if test="tId != null" >
+        t_id = #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="imgname != null" >
+        imgname = #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="imgurl != null" >
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgdesc != null" >
+        imgdesc = #{imgdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imginfo != null" >
+        imginfo = #{imginfo,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtype != null" >
+        imgtype = #{imgtype,jdbcType=BIT},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.git.iboke.model.Img" >
+    update img
+    set t_id = #{tId,jdbcType=INTEGER},
+      imgname = #{imgname,jdbcType=VARCHAR},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      imgdesc = #{imgdesc,jdbcType=VARCHAR},
+      imginfo = #{imginfo,jdbcType=VARCHAR},
+      imgtype = #{imgtype,jdbcType=BIT},
+      time = #{time,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

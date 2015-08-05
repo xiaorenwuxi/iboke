@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.git.iboke.mapper.ArtComMapper" >
+  <resultMap id="BaseResultMap" type="com.git.iboke.model.ArtCom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="a_user" property="aUser" jdbcType="VARCHAR" />
+    <result column="a_comment" property="aComment" jdbcType="VARCHAR" />
+    <result column="a_time" property="aTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, a_id, a_user, a_comment, a_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from artcom
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from artcom
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.git.iboke.model.ArtCom" >
+    insert into artcom (id, a_id, a_user, 
+      a_comment, a_time)
+    values (#{id,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, #{aUser,jdbcType=VARCHAR}, 
+      #{aComment,jdbcType=VARCHAR}, #{aTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.git.iboke.model.ArtCom" >
+    insert into artcom
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="aUser != null" >
+        a_user,
+      </if>
+      <if test="aComment != null" >
+        a_comment,
+      </if>
+      <if test="aTime != null" >
+        a_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aUser != null" >
+        #{aUser,jdbcType=VARCHAR},
+      </if>
+      <if test="aComment != null" >
+        #{aComment,jdbcType=VARCHAR},
+      </if>
+      <if test="aTime != null" >
+        #{aTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.git.iboke.model.ArtCom" >
+    update artcom
+    <set >
+      <if test="aId != null" >
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aUser != null" >
+        a_user = #{aUser,jdbcType=VARCHAR},
+      </if>
+      <if test="aComment != null" >
+        a_comment = #{aComment,jdbcType=VARCHAR},
+      </if>
+      <if test="aTime != null" >
+        a_time = #{aTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.git.iboke.model.ArtCom" >
+    update artcom
+    set a_id = #{aId,jdbcType=INTEGER},
+      a_user = #{aUser,jdbcType=VARCHAR},
+      a_comment = #{aComment,jdbcType=VARCHAR},
+      a_time = #{aTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
